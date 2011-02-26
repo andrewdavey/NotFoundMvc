@@ -1,0 +1,15 @@
+﻿@{
+    ViewBag.Title = "NotFoundMvc Sample App";
+}
+
+<h1>NotFoundMvc Sample App</h1>
+<p>The sample application shows how NotFoundMvc handles various 'not found' scenarioes.</p>
+<p>The following links will return a 404 page. (See Views\Shared\NotFound.cshtml)</p>
+<p>Non-existent controller action: <a href="@Url.Action("home", "bad")">/home/bad</a></p>
+<p>Non-existent controller: <a href="@Url.Action("index", "bad")">/bad</a></p>
+<p>Non-existent route: <a href="/home/index/foo/bar">/home/index/foo/bar</a></p>
+<p>Code-generated not found page: <a href="@Url.Action("product", new{id=1})">/home/product/1</a></p>
+
+<h2>Using NotFoundMvc in your web app</h2>
+<p>The easiest way to add NotFoundMvc is via nuget: <strong>Install-Package NotFoundMvc</strong></p>
+<p>The library auto-loads itself at application start-up. No config is needed.</p>

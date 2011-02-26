@@ -10,3 +10,7 @@ _ReSharper.*
 *.cache
 *.Cache
 *.user
+
+package/input/lib/net40/*
+!package/input/lib/net40/.gitignore
+package/output

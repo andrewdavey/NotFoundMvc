@@ -27,6 +27,7 @@ namespace NotFoundMvc
         void Install()
         {
             WrapControllerBuilder();
+            AddNotFoundRoute();
             AddCatchAllRoute();
         }
 
@@ -39,10 +40,21 @@ namespace NotFoundMvc
             );
         }
 
+        void AddNotFoundRoute()
+        {
+            // To allow IIS to execute "/notfound" when requesting something which is disallowed,
+            // such as /bin or /add_data.
+            RouteTable.Routes.MapRoute(
+                "NotFound",
+                "notfound",
+                new { controller = "NotFound", action = "NotFound" }
+            );
+        }
+
         void AddCatchAllRoute()
         {
             RouteTable.Routes.MapRoute(
-                "NotFound",
+                "NotFound-Catch-All",
                 "{*any}",
                 new { controller = "NotFound", action = "NotFound" }
             );

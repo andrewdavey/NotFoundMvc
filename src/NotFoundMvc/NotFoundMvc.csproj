@@ -51,6 +51,7 @@
     <Compile Include="ControllerFactoryWrapper.cs" />
     <Compile Include="InstallerModule.cs" />
     <Compile Include="NotFoundController.cs" />
+    <Compile Include="NotFoundHandler.cs" />
     <Compile Include="NotFoundViewResult.cs" />
     <Compile Include="PreApplicationStarter.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

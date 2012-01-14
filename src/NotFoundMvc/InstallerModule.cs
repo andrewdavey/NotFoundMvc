@@ -6,29 +6,30 @@ namespace NotFoundMvc
 {
     class InstallerModule : IHttpModule
     {
-        static bool installed;
-        static readonly object installerLock = new object();
+        static bool _installed;
+        static readonly object InstallerLock = new object();
 
         public void Init(HttpApplication application)
         {
-            if (!installed)
+            if (_installed) return;
+            lock (InstallerLock)
             {
-                lock (installerLock)
-                {
-                    if (!installed)
-                    {
-                        Install();
-                        installed = true;
-                    }
-                }
+                if (_installed) return;
+                Install();
+                _installed = true;
             }
         }
 
         void Install()
         {
             WrapControllerBuilder();
-            AddNotFoundRoute();
-            AddCatchAllRoute();
+
+            var routes = RouteTable.Routes;
+            using (routes.GetWriteLock())
+            {
+                AddNotFoundRoute(routes);
+                AddCatchAllRoute(routes);
+            }
         }
 
         void WrapControllerBuilder()
@@ -40,7 +41,7 @@ namespace NotFoundMvc
             );
         }
 
-        void AddNotFoundRoute()
+        void AddNotFoundRoute(RouteCollection routes)
         {
             // To allow IIS to execute "/notfound" when requesting something which is disallowed,
             // such as /bin or /add_data.
@@ -52,12 +53,12 @@ namespace NotFoundMvc
             );
             
             // Insert at start of route table. This means the application can still create another route like "{name}" that won't capture "/notfound".
-            RouteTable.Routes.Insert(0, route);
+            routes.Insert(0, route);
         }
 
-        void AddCatchAllRoute()
+        void AddCatchAllRoute(RouteCollection routes)
         {
-            RouteTable.Routes.MapRoute(
+            routes.MapRoute(
                 "NotFound-Catch-All",
                 "{*any}",
                 new { controller = "NotFound", action = "NotFound" }

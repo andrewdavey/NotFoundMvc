@@ -1,6 +1,8 @@
 ﻿@{
     ViewBag.Title = "NotFoundMvc Sample App";
 }
+@* ReSharper disable Asp.NotResolved *@
+@* Disabled because we want to generate not found routes! *@
 
 <h1>NotFoundMvc Sample App</h1>
 <p>The sample application shows how NotFoundMvc handles various 'not found' scenarios.</p>
@@ -17,3 +19,5 @@
 <h2>Using NotFoundMvc in your web app</h2>
 <p>The easiest way to add NotFoundMvc is via nuget: <strong>Install-Package NotFoundMvc</strong></p>
 <p>The library auto-loads itself at application start-up. No config is needed.</p>
+
+@* ReSharper restore Asp.NotResolved *@

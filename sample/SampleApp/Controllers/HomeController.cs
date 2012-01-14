@@ -1,4 +1,5 @@
-﻿using System.Web.Mvc;
+﻿using System.Web;
+using System.Web.Mvc;
 using NotFoundMvc;
 
 namespace SampleApp.Controllers
@@ -13,6 +14,11 @@ namespace SampleApp.Controllers
         public ActionResult Test(int id)
         {
             return new NotFoundViewResult();
+        }
+
+        public ActionResult Fail()
+        {
+            throw new HttpException(404, "Not found!");
         }
     }
 }

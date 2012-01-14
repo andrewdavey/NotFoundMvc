@@ -1,4 +1,5 @@
-﻿using System.Web.Mvc;
+﻿using System.Web;
+using System.Web.Mvc;
 
 namespace NotFoundMvc
 {
@@ -17,14 +18,35 @@ namespace NotFoundMvc
 
         public bool InvokeAction(ControllerContext controllerContext, string actionName)
         {
-            if (actionInvoker.InvokeAction(controllerContext, actionName))
+            if (InvokeActionWith404Catch(controllerContext, actionName))
                 return true;
 
-            // No action method was found.
-            var controller = new NotFoundController();
-            controller.ExecuteNotFound(controllerContext.RequestContext);
+            // No action method was found, or it was, but threw a 404 HttpException.
+            ExecuteNotFoundControllerAction(controllerContext);
 
             return true;
+        }
+
+        static void ExecuteNotFoundControllerAction(ControllerContext controllerContext)
+        {
+            var controller = new NotFoundController();
+            controller.ExecuteNotFound(controllerContext.RequestContext);
+        }
+
+        bool InvokeActionWith404Catch(ControllerContext controllerContext, string actionName)
+        {
+            try
+            {
+                return actionInvoker.InvokeAction(controllerContext, actionName);
+            }
+            catch (HttpException ex)
+            {
+                if (ex.GetHttpCode() == 404)
+                {
+                    return false;
+                }
+                throw;
+            }
         }
     }
 }

@@ -7,7 +7,7 @@ namespace NotFoundMvc
     class InstallerModule : IHttpModule
     {
         static bool installed;
-        static object installerLock = new object();
+        static readonly object installerLock = new object();
 
         public void Init(HttpApplication application)
         {
@@ -44,11 +44,15 @@ namespace NotFoundMvc
         {
             // To allow IIS to execute "/notfound" when requesting something which is disallowed,
             // such as /bin or /add_data.
-            RouteTable.Routes.MapRoute(
-                "NotFound",
+            var route = new Route(
                 "notfound",
-                new { controller = "NotFound", action = "NotFound" }
+                new RouteValueDictionary(new {controller = "NotFound", action = "NotFound"}),
+                new RouteValueDictionary(new {incoming = new IncomingRequestRouteConstraint()}),
+                new MvcRouteHandler()
             );
+            
+            // Insert at start of route table. This means the application can still create another route like "{name}" that won't capture "/notfound".
+            RouteTable.Routes.Insert(0, route);
         }
 
         void AddCatchAllRoute()
@@ -61,5 +65,13 @@ namespace NotFoundMvc
         }
 
         public void Dispose() { }
+
+        class IncomingRequestRouteConstraint : IRouteConstraint
+        {
+            public bool Match(HttpContextBase httpContext, Route route, string parameterName, RouteValueDictionary values, RouteDirection routeDirection)
+            {
+                return routeDirection == RouteDirection.IncomingRequest;
+            }
+        }
     }
 }

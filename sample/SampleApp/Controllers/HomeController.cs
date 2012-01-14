@@ -18,6 +18,8 @@ namespace SampleApp.Controllers
 
         public ActionResult Fail()
         {
+            Response.Write("Attempt to write some content."); // Expecting the NotFoundViewResult to clear the response before sending its output.
+
             throw new HttpException(404, "Not found!");
         }
     }

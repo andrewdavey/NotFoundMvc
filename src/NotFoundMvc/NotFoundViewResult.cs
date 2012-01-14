@@ -43,6 +43,7 @@ namespace NotFoundMvc
                 ViewName = ViewName,
                 ViewData = ViewData
             };
+            response.Clear();
             viewResult.ExecuteResult(context);
         }
 

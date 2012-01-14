@@ -5,7 +5,7 @@
 <h1>NotFoundMvc Sample App</h1>
 <p>The sample application shows how NotFoundMvc handles various 'not found' scenarios.</p>
 <p>The following links will return a 404 page. (See Views\Shared\NotFound.cshtml)</p>
-<p>Non-existent controller action: <a href="@Url.Action("home", "bad")">/home/bad</a></p>
+<p>Non-existent controller action: <a href="@Url.Action("bad", "home")">/home/bad</a></p>
 <p>Non-existent controller: <a href="@Url.Action("index", "bad")">/bad</a></p>
 <p>Non-existent route: <a href="@Url.Content("~/home/index/foo/bar")">/home/index/foo/bar</a></p>
 <p>Legacy DOS names: <a href="@Url.Content("~/con")">/con</a>, <a href="@Url.Content("~/com1")">/com1</a>, <a href="@Url.Content("~/lpt1")">/lpt1</a>, <a href="@Url.Content("~/aux")">/aux</a>, <a href="@Url.Content("~/prt")">/prt</a>, <a href="@Url.Content("~/nul")">/nul</a></p>

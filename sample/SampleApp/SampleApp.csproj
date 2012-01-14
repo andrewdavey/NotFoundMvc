@@ -103,9 +103,7 @@
   <ItemGroup>
     <Content Include="Areas\Test\Views\Example\Index.cshtml" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Areas\Test\Views\Shared\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Web;
 using System.Web.Mvc;
 
 namespace NotFoundMvc
@@ -19,30 +20,44 @@ namespace NotFoundMvc
         /// The name of the view to render. Defaults to "NotFound".
         /// </summary>
         public string ViewName { get; set; }
+
+        /// <summary>
+        /// The view data passed to the NotFound view.
+        /// </summary>
         public ViewDataDictionary ViewData { get; set; }
 
         public override void ExecuteResult(ControllerContext context)
         {
             var response = context.HttpContext.Response;
             var request = context.HttpContext.Request;
-            var url = request.AppRelativeCurrentExecutionFilePath == "~/notfound" ? ExtractOriginalUrlFromExecuteUrlModeErrorRequest(request.Url) : request.Url.OriginalString;
+
+            ViewData["RequestedUrl"] = GetRequestedUrl(request);
+            ViewData["ReferrerUrl"] = GetReferrerUrl(request, request.Url.OriginalString);
+            
+            response.StatusCode = 404;
+            // Prevent IIS7 from overwriting our error page!
+            response.TrySkipIisCustomErrors = true;
 
             var viewResult = new ViewResult
             {
                 ViewName = ViewName,
                 ViewData = ViewData
             };
-
-            ViewData["RequestedUrl"] = url;
-            ViewData["ReferrerUrl"] = (request.UrlReferrer != null && request.UrlReferrer.OriginalString != url)
-                                        ? request.UrlReferrer.OriginalString 
-                                        : null;
-            
-            response.StatusCode = 404;
-            // Prevent IIS7 from overwriting our error page!
-            response.TrySkipIisCustomErrors = true;
-            
             viewResult.ExecuteResult(context);
+        }
+
+        string GetRequestedUrl(HttpRequestBase request)
+        {
+            return request.AppRelativeCurrentExecutionFilePath == "~/notfound" 
+                       ? ExtractOriginalUrlFromExecuteUrlModeErrorRequest(request.Url) 
+                       : request.Url.OriginalString;
+        }
+
+        string GetReferrerUrl(HttpRequestBase request, string url)
+        {
+            return request.UrlReferrer != null && request.UrlReferrer.OriginalString != url
+                       ? request.UrlReferrer.OriginalString 
+                       : null;
         }
 
         /// <summary>

@@ -1,4 +1,5 @@
-﻿using System.Web.Mvc;
+﻿using System;
+using System.Web.Mvc;
 
 namespace NotFoundMvc
 {
@@ -24,7 +25,7 @@ namespace NotFoundMvc
         {
             var response = context.HttpContext.Response;
             var request = context.HttpContext.Request;
-            var url = request.Url.OriginalString;
+            var url = request.AppRelativeCurrentExecutionFilePath == "~/notfound" ? ExtractOriginalUrlFromExecuteUrlModeErrorRequest(request.Url) : request.Url.OriginalString;
 
             var viewResult = new ViewResult
             {
@@ -42,6 +43,25 @@ namespace NotFoundMvc
             response.TrySkipIisCustomErrors = true;
             
             viewResult.ExecuteResult(context);
+        }
+
+        /// <summary>
+        /// Handles the case when a web.config &lt;error statusCode="404" path="/notfound" responseMode="ExecuteURL" /&gt; is triggered.
+        /// The original URL is passed via the querystring.
+        /// </summary>
+        string ExtractOriginalUrlFromExecuteUrlModeErrorRequest(Uri url)
+        {
+            // Expected format is "?404;http://hostname.com/some/path"
+            var start = url.Query.IndexOf(';');
+            if (0 <= start && start < url.Query.Length - 1)
+            {
+                return url.Query.Substring(start + 1);
+            }
+            else
+            {
+                // Unexpected format, so just return the full URL!
+                return url.ToString();
+            }
         }
     }
 }

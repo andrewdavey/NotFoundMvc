@@ -26,7 +26,13 @@ namespace NotFoundMvc
             {
                 if (ex.GetHttpCode() == 404)
                 {
-                    return new NotFoundController();
+                    IController controller = null;
+                    if (NotFoundHandler.CreateCustomNotFoundController != null)
+                    {
+                        controller = NotFoundHandler.CreateCustomNotFoundController(requestContext);
+                    } 
+                    
+                    return controller ?? new NotFoundController();
                 }
 
                 throw;

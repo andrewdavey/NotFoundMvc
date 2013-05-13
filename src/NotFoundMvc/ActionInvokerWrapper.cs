@@ -29,8 +29,17 @@ namespace NotFoundMvc
 
         static void ExecuteNotFoundControllerAction(ControllerContext controllerContext)
         {
-            var controller = new NotFoundController();
-            controller.ExecuteNotFound(controllerContext.RequestContext);
+            IController controller;
+            if (NotFoundHandler.CreateCustomNotFoundController != null)
+            {
+                controller = NotFoundHandler.CreateCustomNotFoundController(controllerContext.RequestContext) ?? new NotFoundController();
+            }
+            else
+            {
+                controller = new NotFoundController();
+            }
+
+            controller.Execute(controllerContext.RequestContext);
         }
 
         bool InvokeActionWith404Catch(ControllerContext controllerContext, string actionName)

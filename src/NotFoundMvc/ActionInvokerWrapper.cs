@@ -30,9 +30,9 @@ namespace NotFoundMvc
         static void ExecuteNotFoundControllerAction(ControllerContext controllerContext)
         {
             IController controller;
-            if (NotFoundHandler.CreateCustomNotFoundController != null)
+            if (NotFoundHandler.CreateNotFoundController != null)
             {
-                controller = NotFoundHandler.CreateCustomNotFoundController(controllerContext.RequestContext) ?? new NotFoundController();
+                controller = NotFoundHandler.CreateNotFoundController(controllerContext.RequestContext) ?? new NotFoundController();
             }
             else
             {

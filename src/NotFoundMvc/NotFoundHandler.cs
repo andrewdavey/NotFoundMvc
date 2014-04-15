@@ -7,9 +7,9 @@ namespace NotFoundMvc
 {
     public class NotFoundHandler : IHttpHandler
     {
-        static Func<RequestContext, IController> _createNotFoundController = context => new NotFoundController();
+        static Func<RequestContext, INotFoundController> _createNotFoundController = context => new NotFoundController();
 
-        public static Func<RequestContext, IController> CreateNotFoundController
+        public static Func<RequestContext, INotFoundController> CreateNotFoundController
         {
             get
             {

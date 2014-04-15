@@ -1,4 +1,5 @@
-﻿using System.Web;
+﻿using System;
+using System.Web;
 using System.Web.Mvc;
 using System.Web.Routing;
 using System.Web.SessionState;
@@ -8,7 +9,7 @@ namespace NotFoundMvc
     class ControllerFactoryWrapper : IControllerFactory
     {
         readonly IControllerFactory factory;
-
+        
         public ControllerFactoryWrapper(IControllerFactory factory)
         {
             this.factory = factory;
@@ -38,7 +39,8 @@ namespace NotFoundMvc
             var controllerWithInvoker = controller as Controller;
             if (controllerWithInvoker != null)
             {
-                controllerWithInvoker.ActionInvoker = new ActionInvokerWrapper(controllerWithInvoker.ActionInvoker);
+                controllerWithInvoker.ActionInvoker = 
+                    ActionInvokerSelector.Current(controllerWithInvoker.ActionInvoker);
             }
         }
 

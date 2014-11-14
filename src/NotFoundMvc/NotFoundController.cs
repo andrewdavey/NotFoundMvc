@@ -12,8 +12,11 @@ namespace NotFoundMvc
 
         public void ExecuteNotFound(RequestContext requestContext)
         {
+            Controller controller = new FakeController();
+            ControllerContext context = new ControllerContext(requestContext, controller);
+            controller.ControllerContext = context;
             new NotFoundViewResult().ExecuteResult(
-                new ControllerContext(requestContext, new FakeController())
+                context
             );
         }
 

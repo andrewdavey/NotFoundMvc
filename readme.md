@@ -1,8 +1,9 @@
 NotFoundMvc
+[![daviddesloovere MyGet Build Status](https://www.myget.org/BuildSource/Badge/daviddesloovere?identifier=42e5a458-d3c2-4b20-a5e3-bf0a09d580aa)](https://www.myget.org/)
 
-by Andrew Davey - http://aboutcode.net/ - andrew@equin.co.uk
+Created by Andrew Davey - http://aboutcode.net/ - andrew@equin.co.uk
 
-Provides a user-friendly '404' page whenever a controller, action or route is not found in your ASP.NET MVC3 application.
+Provides a user-friendly '404' page whenever a controller, action or route is not found in your ASP.NET MVC (3, 4, 5) application.
 A view called NotFound is rendered instead of the default ASP.NET error page.
 
 Add via nuget using:

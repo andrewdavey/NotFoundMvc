@@ -2,7 +2,7 @@
 <package>
     <metadata>
         <id>NotFoundMvc</id>
-        <version>1.2.0</version>
+        <version>1.3.0-beta</version>
         <title>NotFound MVC</title>
         <authors>Andrew Davey</authors>
         <owners>Andrew Davey</owners>
@@ -10,7 +10,7 @@
 A view called NotFound is rendered instead of the default ASP.NET error page.</description>
         <projectUrl>https://github.com/andrewdavey/notfoundmvc</projectUrl>
         <licenseUrl>http://www.opensource.org/licenses/mit-license.php</licenseUrl>
-        <tags>asp.net mvc web 404</tags>
+        <tags>asp.net mvc notfound 404</tags>
         <language>en-US</language>
     </metadata>
 </package>

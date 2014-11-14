@@ -11,7 +11,6 @@ _ReSharper.*
 *.Cache
 *.user
 Thumbs.db
+msbuild.log
 
-package/input/lib/net40/*
-!package/input/lib/net40/.gitignore
-package/output
+Build/*

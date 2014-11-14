@@ -6,7 +6,7 @@
         <title>NotFound MVC</title>
         <authors>Andrew Davey, David De Sloovere</authors>
         <owners>Andrew Davey, David De Sloovere</owners>
-        <description>Provides a user-friendly '404' page whenever a controller, action or route is not found in your ASP.NET MVC3/MVC4 application.
+        <description>Provides a user-friendly '404' page whenever a controller, action or route is not found in your ASP.NET MVC3/MVC4/MVC5 application.
 A view called NotFound is rendered instead of the default ASP.NET error page.</description>
         <projectUrl>https://github.com/andrewdavey/notfoundmvc</projectUrl>
         <licenseUrl>http://www.opensource.org/licenses/mit-license.php</licenseUrl>

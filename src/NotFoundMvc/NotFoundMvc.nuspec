@@ -2,10 +2,10 @@
 <package>
     <metadata>
         <id>NotFoundMvc</id>
-        <version>1.3.0-beta</version>
+        <version>$version$</version>
         <title>NotFound MVC</title>
-        <authors>Andrew Davey</authors>
-        <owners>Andrew Davey</owners>
+        <authors>Andrew Davey, David De Sloovere</authors>
+        <owners>Andrew Davey, David De Sloovere</owners>
         <description>Provides a user-friendly '404' page whenever a controller, action or route is not found in your ASP.NET MVC3/MVC4 application.
 A view called NotFound is rendered instead of the default ASP.NET error page.</description>
         <projectUrl>https://github.com/andrewdavey/notfoundmvc</projectUrl>
@@ -13,4 +13,7 @@ A view called NotFound is rendered instead of the default ASP.NET error page.</d
         <tags>asp.net mvc notfound 404</tags>
         <language>en-US</language>
     </metadata>
+    <files>
+        <file src="..\..\package\content\**\*.*" target="content" />
+    </files>
 </package>

@@ -10,9 +10,8 @@ _ReSharper.*
 *.cache
 *.Cache
 *.user
+Thumbs.db
 
 package/input/lib/net40/*
 !package/input/lib/net40/.gitignore
 package/output
-# push.cmd contains my secret nuget access key!
-package/push.cmd

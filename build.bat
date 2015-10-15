@@ -1,6 +1,9 @@
 @echo Off
 REM http://docs.myget.org/docs/reference/custom-build-scripts
 
+ECHO echoing nuget
+ECHO %nuget%
+
 set config=%1
 if "%config%" == "" (
    set config=Release

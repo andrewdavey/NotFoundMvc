@@ -1,0 +1,33 @@
+﻿@using System
+@{
+    // 404 Not Found
+    //
+    // This view was added by NotFoundMVC
+    // For inspiration see: https://www.google.be/search?q=example+404+page
+    //
+    // The following properties are available in the ViewBag:
+    // ViewData["RequestedUrl"]
+    // ViewData["ReferrerUrl"]
+    //
+
+    ViewBag.Title = "Page Not Found";
+}
+
+<h1>Page Not Found</h1>
+
+<p>Could not find the page: @ViewBag.RequestedUrl</p>
+@if (ViewBag.ReferrerUrl != null)
+{
+    <p>Go back to the <a href="@ViewBag.ReferrerUrl">previous page</a>.</p>
+}
+
+<script type="text/javascript">
+    var GOOG_FIXURL_LANG = '@System.Globalization.CultureInfo.CurrentCulture.Name.Substring(0,2)';
+    var GOOG_FIXURL_SITE = '@Request.Url.GetLeftPart(UriPartial.Authority)'
+</script>
+<script type="text/javascript"
+        src="http://linkhelp.clients.google.com/tbproxy/lh/wm/fixurl.js">
+</script>
+
+@* Error page must be longer than 512 bytes for IE and Chrome to show it. So add padding in case we're short. *@
+@(new string(' ', 512))

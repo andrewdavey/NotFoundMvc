@@ -1,13 +1,13 @@
-﻿using System.Web.Mvc;
-using System.Web.Routing;
-
-namespace NotFoundMvc
+﻿namespace NotFoundMvc
 {
+    using System.Web.Mvc;
+    using System.Web.Routing;
+
     public class NotFoundController : IController
     {
         public void Execute(RequestContext requestContext)
         {
-            ExecuteNotFound(requestContext);
+            this.ExecuteNotFound(requestContext);
         }
 
         public void ExecuteNotFound(RequestContext requestContext)
@@ -23,7 +23,8 @@ namespace NotFoundMvc
         // ControllerContext requires an object that derives from ControllerBase.
         // NotFoundController does not do this.
         // So the easiest workaround is this FakeController.
-        class FakeController : Controller { }
+        private class FakeController : Controller
+        {
+        }
     }
-
 }

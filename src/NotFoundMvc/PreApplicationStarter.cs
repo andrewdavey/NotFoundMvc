@@ -1,22 +1,27 @@
 ﻿using System.Web;
-using Microsoft.Web.Infrastructure.DynamicModuleHelper;
 
 [assembly: PreApplicationStartMethod(typeof(NotFoundMvc.PreApplicationStarter), "Start")]
 
 namespace NotFoundMvc
 {
+    using Microsoft.Web.Infrastructure.DynamicModuleHelper;
+
     /// <summary>
     /// Runs at web application start.
     /// </summary>
-    public class PreApplicationStarter
+    public static class PreApplicationStarter
     {
-        static bool started;
+        private static bool started;
 
         public static void Start()
         {
-            if (started) return; // Only start once.
-            started = true;
+            if (started)
+            {
+                // Only start once.
+                return;
+            }
 
+            started = true;
             DynamicModuleUtility.RegisterModule(typeof(InstallerModule));
         }
     }

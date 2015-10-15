@@ -1,13 +1,13 @@
-﻿using System.Web;
-using System.Web.Mvc;
-using System.Web.Routing;
-using System.Web.SessionState;
-
-namespace NotFoundMvc
+﻿namespace NotFoundMvc
 {
-    class ControllerFactoryWrapper : IControllerFactory
+    using System.Web;
+    using System.Web.Mvc;
+    using System.Web.Routing;
+    using System.Web.SessionState;
+
+    internal class ControllerFactoryWrapper : IControllerFactory
     {
-        readonly IControllerFactory factory;
+        private readonly IControllerFactory factory;
 
         public ControllerFactoryWrapper(IControllerFactory factory)
         {
@@ -18,7 +18,7 @@ namespace NotFoundMvc
         {
             try
             {
-                var controller = factory.CreateController(requestContext, controllerName);
+                var controller = this.factory.CreateController(requestContext, controllerName);
                 WrapControllerActionInvoker(controller);
                 return controller;
             }
@@ -33,23 +33,23 @@ namespace NotFoundMvc
             }
         }
 
-        void WrapControllerActionInvoker(IController controller)
+        public SessionStateBehavior GetControllerSessionBehavior(RequestContext requestContext, string controllerName)
+        {
+            return this.factory.GetControllerSessionBehavior(requestContext, controllerName);
+        }
+
+        public void ReleaseController(IController controller)
+        {
+            this.factory.ReleaseController(controller);
+        }
+
+        private static void WrapControllerActionInvoker(IController controller)
         {
             var controllerWithInvoker = controller as Controller;
             if (controllerWithInvoker != null)
             {
                 controllerWithInvoker.ActionInvoker = new ActionInvokerWrapper(controllerWithInvoker.ActionInvoker);
             }
-        }
-
-        public SessionStateBehavior GetControllerSessionBehavior(RequestContext requestContext, string controllerName)
-        {
-            return factory.GetControllerSessionBehavior(requestContext, controllerName);
-        }
-
-        public void ReleaseController(IController controller)
-        {
-            factory.ReleaseController(controller);
         }
     }
 }

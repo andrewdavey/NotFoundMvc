@@ -1,9 +1,9 @@
-﻿using System;
-using System.Web;
-using System.Web.Mvc;
-
-namespace NotFoundMvc
+﻿namespace NotFoundMvc
 {
+    using System;
+    using System.Web;
+    using System.Web.Mvc;
+
     /// <summary>
     /// Renders a view called "NotFound" and sets the response status code to 404.
     /// View data is assigned for "RequestedUrl" and "ReferrerUrl".
@@ -12,8 +12,8 @@ namespace NotFoundMvc
     {
         public NotFoundViewResult()
         {
-            ViewName = "NotFound";
-            ViewData = new ViewDataDictionary();
+            this.ViewName = "NotFound";
+            this.ViewData = new ViewDataDictionary();
         }
 
         /// <summary>
@@ -28,36 +28,43 @@ namespace NotFoundMvc
 
         public override void ExecuteResult(ControllerContext context)
         {
+            if (context == null)
+            {
+                throw new ArgumentNullException("context");
+            }
+
             var response = context.HttpContext.Response;
             var request = context.HttpContext.Request;
 
-            ViewData["RequestedUrl"] = GetRequestedUrl(request);
-            ViewData["ReferrerUrl"] = GetReferrerUrl(request, request.Url.OriginalString);
-            
+            this.ViewData["RequestedUrl"] = GetRequestedUrl(request);
+            this.ViewData["ReferrerUrl"] = GetReferrerUrl(request, request.Url.OriginalString);
+
+            // Make sure the status code is 404 for the search engine bots
             response.StatusCode = 404;
+
             // Prevent IIS7 from overwriting our error page!
             response.TrySkipIisCustomErrors = true;
 
             var viewResult = new ViewResult
             {
-                ViewName = ViewName,
-                ViewData = ViewData
+                ViewName = this.ViewName,
+                ViewData = this.ViewData
             };
             response.Clear();
             viewResult.ExecuteResult(context);
         }
 
-        string GetRequestedUrl(HttpRequestBase request)
+        private static string GetRequestedUrl(HttpRequestBase request)
         {
-            return request.AppRelativeCurrentExecutionFilePath == "~/notfound" 
-                       ? ExtractOriginalUrlFromExecuteUrlModeErrorRequest(request.Url) 
+            return request.AppRelativeCurrentExecutionFilePath == "~/notfound"
+                       ? ExtractOriginalUrlFromExecuteUrlModeErrorRequest(request.Url)
                        : request.Url.OriginalString;
         }
 
-        string GetReferrerUrl(HttpRequestBase request, string url)
+        private static string GetReferrerUrl(HttpRequestBase request, string url)
         {
             return request.UrlReferrer != null && request.UrlReferrer.OriginalString != url
-                       ? request.UrlReferrer.OriginalString 
+                       ? request.UrlReferrer.OriginalString
                        : null;
         }
 
@@ -65,7 +72,7 @@ namespace NotFoundMvc
         /// Handles the case when a web.config &lt;error statusCode="404" path="/notfound" responseMode="ExecuteURL" /&gt; is triggered.
         /// The original URL is passed via the querystring.
         /// </summary>
-        string ExtractOriginalUrlFromExecuteUrlModeErrorRequest(Uri url)
+        private static string ExtractOriginalUrlFromExecuteUrlModeErrorRequest(Uri url)
         {
             // Expected format is "?404;http://hostname.com/some/path"
             var start = url.Query.IndexOf(';');
@@ -73,11 +80,9 @@ namespace NotFoundMvc
             {
                 return url.Query.Substring(start + 1);
             }
-            else
-            {
-                // Unexpected format, so just return the full URL!
-                return url.ToString();
-            }
+
+            // Unexpected format, so just return the full URL!
+            return url.ToString();
         }
     }
 }

@@ -15,9 +15,15 @@ if not "%PackageVersion%" == "" (
 )
 
 set nuget=
+ECHO echoing nuget
+ECHO %nuget%
+
 if "%nuget%" == "" (
     set nuget=nuget
 )
+
+ECHO echoing nuget
+ECHO %nuget%
 
 ECHO ** Package restore w/ %nuget%
 cmd /c %nuget% restore "src\build.sln"

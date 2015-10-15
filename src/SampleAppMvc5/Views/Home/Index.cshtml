@@ -58,9 +58,9 @@
 </p>
 <p>
     MVC views:
-    <a href="@Url.Content("~/views")">/views<b>(404 by IIS?)</b></a>,
-    <a href="@Url.Content("~/views/home/index.cshtml")">/views/home/index.cshtml<b>(404 by IIS?)</b></a>,
-    <a href="@Url.Content("~/views/shared/_layout.cshtml")">/views/shared/_layout.cshtml<b>(404 by IIS?)</b></a>
+    <a href="@Url.Content("~/views")">/views <b>(404 by IIS?)</b></a>,
+    <a href="@Url.Content("~/views/home/index.cshtml")">/views/home/index.cshtml <b>(404 by IIS?)</b></a>,
+    <a href="@Url.Content("~/views/shared/_layout.cshtml")">/views/shared/_layout.cshtml <b>(404 by IIS?)</b></a>
 </p>
 <p>
     Code-generated not found page (HttpNotFoundResult):
@@ -69,6 +69,10 @@
 <p>
     Action that throws HttpException with 404 status code:
     <a href="@Url.Action("fail", "home")">/home/fail</a>
+</p>
+
+<p>
+    Activate Glimpse at <a href="@Url.Content("~/glimpse.axd")" target="_blank">/glimpse.axd</a>
 </p>
 
 @* ReSharper restore Asp.NotResolved *@

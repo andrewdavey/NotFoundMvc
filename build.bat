@@ -1,9 +1,6 @@
 @echo Off
 REM http://docs.myget.org/docs/reference/custom-build-scripts
 
-ECHO echoing nuget
-ECHO %nuget%
-
 set config=%1
 if "%config%" == "" (
    set config=Release
@@ -14,16 +11,10 @@ if not "%PackageVersion%" == "" (
    set version=-Version %PackageVersion%
 )
 
-set nuget=
-ECHO echoing nuget
-ECHO %nuget%
-
+set nuget=%nuget%
 if "%nuget%" == "" (
     set nuget=nuget
 )
-
-ECHO echoing nuget
-ECHO %nuget%
 
 ECHO ** Package restore w/ %nuget%
 cmd /c %nuget% restore "src\build.sln"

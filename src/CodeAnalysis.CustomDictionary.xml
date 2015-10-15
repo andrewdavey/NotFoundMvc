@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!-- http://msdn.microsoft.com/en-us/library/bb514188.aspx -->
+<Dictionary>
+    <Words>
+        <Recognized>
+            <Word>Mvc</Word>
+        </Recognized>
+        <DiscreteExceptions>
+        </DiscreteExceptions>
+    </Words>
+    <Acronyms>
+        <CasingExceptions>
+        </CasingExceptions>
+    </Acronyms>
+</Dictionary>

@@ -1,45 +1,30 @@
-﻿using System;
-using System.Web;
-using System.Web.Mvc;
-using System.Web.Routing;
-
-namespace NotFoundMvc
+﻿namespace NotFoundMvc
 {
+    using System;
+    using System.Web;
+    using System.Web.Mvc;
+    using System.Web.Routing;
+
     public class NotFoundHandler : IHttpHandler
     {
-        static Func<RequestContext, IController> _createNotFoundController = context => new NotFoundController();
+        private static Func<RequestContext, IController> createNotFoundController = context => new NotFoundController();
 
         public static Func<RequestContext, IController> CreateNotFoundController
         {
             get
             {
-                return _createNotFoundController;
+                return createNotFoundController;
             }
+
             set
             {
-                if (value == null) throw new ArgumentNullException();
-                _createNotFoundController = value;
+                if (value == null)
+                {
+                    throw new ArgumentNullException("value");
+                }
+
+                createNotFoundController = value;
             }
-        }
-
-        public void ProcessRequest(HttpContext context)
-        {
-            ProcessRequest(new HttpContextWrapper(context));
-        }
-
-        void ProcessRequest(HttpContextBase context)
-        {
-            var requestContext = CreateRequestContext(context);
-            var controller = _createNotFoundController(requestContext);
-            controller.Execute(requestContext);
-        }
-
-        RequestContext CreateRequestContext(HttpContextBase context)
-        {
-            var routeData = new RouteData();
-            routeData.Values.Add("controller", "NotFound");
-            var requestContext = new RequestContext(context, routeData);
-            return requestContext;
         }
 
         public bool IsReusable
@@ -47,7 +32,29 @@ namespace NotFoundMvc
             get { return false; }
         }
 
+        public void ProcessRequest(HttpContext context)
+        {
+            this.ProcessRequest(new HttpContextWrapper(context));
+        }
+
+        private void ProcessRequest(HttpContextBase context)
+        {
+            var requestContext = this.CreateRequestContext(context);
+            var controller = createNotFoundController(requestContext);
+            controller.Execute(requestContext);
+        }
+
+        private RequestContext CreateRequestContext(HttpContextBase context)
+        {
+            var routeData = new RouteData();
+            routeData.Values.Add("controller", "NotFound");
+            var requestContext = new RequestContext(context, routeData);
+            return requestContext;
+        }
+
         // ControllerContext requires an object that derives from ControllerBase.
-        class FakeController : Controller { }
+        private class FakeController : Controller
+        {
+        }
     }
 }

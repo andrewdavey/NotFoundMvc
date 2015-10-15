@@ -12,9 +12,13 @@
     </description>
     <projectUrl>https://github.com/andrewdavey/notfoundmvc</projectUrl>
     <licenseUrl>http://www.opensource.org/licenses/mit-license.php</licenseUrl>
+    <iconUrl>https://raw.githubusercontent.com/andrewdavey/NotFoundMvc/master/package/logo.png</iconUrl>
     <tags>asp.net mvc notfound 404</tags>
     <language>en-US</language>
-    <releaseNotes>v1.3: Play nice with Glimpse (no exception if 404 with Glimpse installed)</releaseNotes>
+    <releaseNotes>
+      v1.3: Play nice with Glimpse (no exception if 404 with Glimpse installed)
+      v1.4: Improved view
+    </releaseNotes>
   </metadata>
   <files>
     <file src="..\..\package\content\**\*.*" target="content" />

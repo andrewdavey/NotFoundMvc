@@ -1,15 +1,15 @@
-﻿using System.Web;
-using System.Web.Mvc;
-
-namespace NotFoundMvc
+﻿namespace NotFoundMvc
 {
+    using System.Web;
+    using System.Web.Mvc;
+
     /// <summary>
     /// Wraps another IActionInvoker except it handles the case of an action method
     /// not being found and invokes the NotFoundController instead.
     /// </summary>
-    class ActionInvokerWrapper : IActionInvoker
+    internal class ActionInvokerWrapper : IActionInvoker
     {
-        readonly IActionInvoker actionInvoker;
+        private readonly IActionInvoker actionInvoker;
 
         public ActionInvokerWrapper(IActionInvoker actionInvoker)
         {
@@ -18,8 +18,10 @@ namespace NotFoundMvc
 
         public bool InvokeAction(ControllerContext controllerContext, string actionName)
         {
-            if (InvokeActionWith404Catch(controllerContext, actionName))
+            if (this.InvokeActionWith404Catch(controllerContext, actionName))
+            {
                 return true;
+            }
 
             // No action method was found, or it was, but threw a 404 HttpException.
             ExecuteNotFoundControllerAction(controllerContext);
@@ -27,7 +29,7 @@ namespace NotFoundMvc
             return true;
         }
 
-        static void ExecuteNotFoundControllerAction(ControllerContext controllerContext)
+        private static void ExecuteNotFoundControllerAction(ControllerContext controllerContext)
         {
             IController controller;
             if (NotFoundHandler.CreateNotFoundController != null)
@@ -42,11 +44,11 @@ namespace NotFoundMvc
             controller.Execute(controllerContext.RequestContext);
         }
 
-        bool InvokeActionWith404Catch(ControllerContext controllerContext, string actionName)
+        private bool InvokeActionWith404Catch(ControllerContext controllerContext, string actionName)
         {
             try
             {
-                return actionInvoker.InvokeAction(controllerContext, actionName);
+                return this.actionInvoker.InvokeAction(controllerContext, actionName);
             }
             catch (HttpException ex)
             {
@@ -54,6 +56,7 @@ namespace NotFoundMvc
                 {
                     return false;
                 }
+
                 throw;
             }
         }

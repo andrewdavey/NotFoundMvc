@@ -1,13 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <RuleSet Name="Natch Recommended Rules" Description="Based on the Extended Correctness, Extended Design Guideline, Globalization and Minimum Recommended rulesets. Running this rule set may result in a large number of warnings/errors being reported. Don't use supression unless there is a good reason for it. You must add a 'justification' to the supression. Suppress inline if you will change the code later. Suppress in product file if code is reviewed." ToolsVersion="14.0">
-  <Include Path="extendedcorrectnessrules.ruleset" Action="Default" />
-  <Include Path="extendeddesignguidelinerules.ruleset" Action="Default" />
-  <Include Path="globalizationrules.ruleset" Action="Default" />
-  <Include Path="minimumrecommendedrules.ruleset" Action="Default" />
   <Rules AnalyzerId="Microsoft.Analyzers.ManagedCodeAnalysis" RuleNamespace="Microsoft.Rules.Managed">
     <Rule Id="CA1000" Action="Error" />
     <Rule Id="CA1001" Action="Error" />
-    <Rule Id="CA1002" Action="None" />
     <Rule Id="CA1003" Action="Error" />
     <Rule Id="CA1004" Action="Error" />
     <Rule Id="CA1005" Action="Error" />
@@ -19,17 +14,13 @@
     <Rule Id="CA1011" Action="Error" />
     <Rule Id="CA1012" Action="Error" />
     <Rule Id="CA1013" Action="Error" />
-    <Rule Id="CA1014" Action="None" />
     <Rule Id="CA1016" Action="Error" />
     <Rule Id="CA1017" Action="Error" />
     <Rule Id="CA1018" Action="Error" />
     <Rule Id="CA1019" Action="Error" />
-    <Rule Id="CA1020" Action="None" />
     <Rule Id="CA1021" Action="Error" />
     <Rule Id="CA1023" Action="Error" />
-    <Rule Id="CA1024" Action="None" />
     <Rule Id="CA1025" Action="Error" />
-    <Rule Id="CA1026" Action="None" />
     <Rule Id="CA1027" Action="Error" />
     <Rule Id="CA1028" Action="Error" />
     <Rule Id="CA1030" Action="Error" />
@@ -54,9 +45,6 @@
     <Rule Id="CA1051" Action="Error" />
     <Rule Id="CA1052" Action="Error" />
     <Rule Id="CA1053" Action="Error" />
-    <Rule Id="CA1054" Action="None" />
-    <Rule Id="CA1055" Action="None" />
-    <Rule Id="CA1056" Action="None" />
     <Rule Id="CA1057" Action="Error" />
     <Rule Id="CA1058" Action="Error" />
     <Rule Id="CA1059" Action="Error" />
@@ -102,8 +90,6 @@
     <Rule Id="CA1601" Action="Error" />
     <Rule Id="CA1700" Action="Error" />
     <Rule Id="CA1701" Action="Error" />
-    <Rule Id="CA1702" Action="None" />
-    <Rule Id="CA1703" Action="None" />
     <Rule Id="CA1704" Action="Error" />
     <Rule Id="CA1707" Action="Error" />
     <Rule Id="CA1708" Action="Error" />
@@ -210,7 +196,6 @@
     <Rule Id="CA2224" Action="Error" />
     <Rule Id="CA2225" Action="Error" />
     <Rule Id="CA2226" Action="Error" />
-    <Rule Id="CA2227" Action="None" />
     <Rule Id="CA2228" Action="Error" />
     <Rule Id="CA2229" Action="Error" />
     <Rule Id="CA2230" Action="Error" />
@@ -229,7 +214,6 @@
     <Rule Id="CA2243" Action="Error" />
   </Rules>
   <Rules AnalyzerId="StyleCop.Analyzers" RuleNamespace="StyleCop.Analyzers">
-    <Rule Id="SA1117" Action="Warning" />
     <Rule Id="SA1305" Action="Warning" />
     <Rule Id="SA1404" Action="None" />
     <Rule Id="SA1600" Action="None" />

@@ -1,4 +1,6 @@
 @echo Off
+REM http://docs.myget.org/docs/reference/custom-build-scripts
+
 set config=%1
 if "%config%" == "" (
    set config=Release
@@ -11,12 +13,17 @@ if not "%PackageVersion%" == "" (
 
 set nuget=
 if "%nuget%" == "" (
-    set nuget=nuget
+    set nuget=nuget.exe
 )
 
-REM Build
-%WINDIR%\Microsoft.NET\Framework\v4.0.30319\msbuild "src\build.sln" /p:Configuration="%config%" /m /v:M /fl /flp:LogFile=msbuild.log;Verbosity=Normal /nr:false
+ECHO ** Package restore
+cmd /c %nuget% restore "src\build.sln"
 
-REM Package
+ECHO ---
+ECHO ** Build / %config%
+%WINDIR%\Microsoft.NET\Framework\v4.0.30319\msbuild "src\build.sln" /t:rebuild /p:Configuration="%config%" /m /v:M /fl /flp:LogFile=msbuild.log;Verbosity=normal /nr:false
+
+ECHO ---
+ECHO ** Package w/ %nuget% / version: %version%
 mkdir Build
 cmd /c %nuget% pack "src\NotFoundMvc\NotFoundMvc.csproj" -symbols -o Build -p Configuration=%config% %version%

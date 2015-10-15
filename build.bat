@@ -15,7 +15,7 @@ if "%nuget%" == "" (
 )
 
 REM Build
-%WINDIR%\Microsoft.NET\Framework\v4.0.30319\msbuild "src\NotFoundMvc.sln" /p:Configuration="%config%" /m /v:M /fl /flp:LogFile=msbuild.log;Verbosity=Normal /nr:false
+%WINDIR%\Microsoft.NET\Framework\v4.0.30319\msbuild "src\build.sln" /p:Configuration="%config%" /m /v:M /fl /flp:LogFile=msbuild.log;Verbosity=Normal /nr:false
 
 REM Package
 mkdir Build

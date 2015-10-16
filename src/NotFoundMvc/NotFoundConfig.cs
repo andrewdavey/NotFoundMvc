@@ -3,7 +3,7 @@
     using System;
     using System.Web;
 
-    public static class NotFoundMvcConfig
+    public static class NotFoundConfig
     {
         private static readonly Action<HttpRequestBase, Uri> NullOnNotFound = (req, uri) => { /*noop*/ };
 

@@ -37,7 +37,7 @@
             var request = context.HttpContext.Request;
 
             var requestedUrl = GetRequestedUrl(request);
-            NotFoundMvcConfig.OnNotFound(context.RequestContext.HttpContext.Request, new Uri(requestedUrl));
+            NotFoundConfig.OnNotFound(context.RequestContext.HttpContext.Request, new Uri(requestedUrl));
             this.ViewData["RequestedUrl"] = requestedUrl;
             this.ViewData["ReferrerUrl"] = GetReferrerUrl(request, request.Url.OriginalString);
 

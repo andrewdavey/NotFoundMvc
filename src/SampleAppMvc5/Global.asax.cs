@@ -18,7 +18,7 @@
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
 
-            NotFoundMvcConfig.OnNotFound = (req, uri) =>
+            NotFoundConfig.OnNotFound = (req, uri) =>
                 {
                     // The current URI, which can be the same as the original requested URI http://localhost:43825/bin
                     // or something triggered from the IIS via the system.webServer/httpErrors http://localhost:43825/notfound?404;http://localhost:43825/bin

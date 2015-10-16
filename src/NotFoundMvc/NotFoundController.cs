@@ -3,26 +3,16 @@
     using System.Web.Mvc;
     using System.Web.Routing;
 
-    public class NotFoundController : IController
+    public class NotFoundController : ControllerBase
     {
-        public void Execute(RequestContext requestContext)
+        public ActionResult NotFound()
         {
-            this.ExecuteNotFound(requestContext);
+            return new NotFoundViewResult();
         }
 
-        public void ExecuteNotFound(RequestContext requestContext)
+        protected override void ExecuteCore()
         {
-            var controller = new FakeController();
-            var context = new ControllerContext(requestContext, controller);
-            controller.ControllerContext = context;
-            new NotFoundViewResult().ExecuteResult(context);
-        }
-
-        // ControllerContext requires an object that derives from ControllerBase.
-        // NotFoundController does not do this.
-        // So the easiest workaround is this FakeController.
-        private class FakeController : Controller
-        {
+            new NotFoundViewResult().ExecuteResult(this.ControllerContext);
         }
     }
 }

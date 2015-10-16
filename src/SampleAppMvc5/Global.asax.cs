@@ -1,6 +1,7 @@
 ﻿namespace SampleAppMvc5
 {
     using System.Globalization;
+    using System.Web;
     using System.Web.Mvc;
     using System.Web.Optimization;
     using System.Web.Routing;
@@ -28,6 +29,8 @@
                     System.Diagnostics.Trace.WriteLine(uri);
 
                     Log.Warn(CultureInfo.InvariantCulture, "404 {0}", uri);
+
+                    Elmah.ErrorSignal.FromCurrentContext().Raise(new HttpException(404, uri.ToString()));
                 };
         }
     }

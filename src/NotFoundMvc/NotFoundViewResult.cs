@@ -36,7 +36,9 @@
             var response = context.HttpContext.Response;
             var request = context.HttpContext.Request;
 
-            this.ViewData["RequestedUrl"] = GetRequestedUrl(request);
+            var requestedUrl = GetRequestedUrl(request);
+            NotFoundConfig.OnNotFound(context.RequestContext.HttpContext.Request, new Uri(requestedUrl));
+            this.ViewData["RequestedUrl"] = requestedUrl;
             this.ViewData["ReferrerUrl"] = GetReferrerUrl(request, request.Url.OriginalString);
 
             // Make sure the status code is 404 for the search engine bots

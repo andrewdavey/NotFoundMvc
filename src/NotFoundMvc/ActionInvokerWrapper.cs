@@ -1,5 +1,6 @@
 ﻿namespace NotFoundMvc
 {
+    using System;
     using System.Web;
     using System.Web.Mvc;
 
@@ -25,7 +26,6 @@
 
             // No action method was found, or it was, but threw a 404 HttpException.
             ExecuteNotFoundControllerAction(controllerContext);
-
             return true;
         }
 

@@ -75,6 +75,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ActionInvokerWrapper.cs" />
+    <Compile Include="NotFoundConfig.cs" />
     <Compile Include="ControllerFactoryWrapper.cs" />
     <Compile Include="GlobalSuppressions.cs" />
     <Compile Include="InstallerModule.cs" />

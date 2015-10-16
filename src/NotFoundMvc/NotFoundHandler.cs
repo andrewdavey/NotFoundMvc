@@ -51,10 +51,5 @@
             var requestContext = new RequestContext(context, routeData);
             return requestContext;
         }
-
-        // ControllerContext requires an object that derives from ControllerBase.
-        private class FakeController : Controller
-        {
-        }
     }
 }

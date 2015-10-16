@@ -12,12 +12,10 @@
 
         public void ExecuteNotFound(RequestContext requestContext)
         {
-            Controller controller = new FakeController();
-            ControllerContext context = new ControllerContext(requestContext, controller);
+            var controller = new FakeController();
+            var context = new ControllerContext(requestContext, controller);
             controller.ControllerContext = context;
-            new NotFoundViewResult().ExecuteResult(
-                context
-            );
+            new NotFoundViewResult().ExecuteResult(context);
         }
 
         // ControllerContext requires an object that derives from ControllerBase.

@@ -16,8 +16,8 @@
     <tags>asp.net mvc notfound 404</tags>
     <language>en-US</language>
     <releaseNotes>
+v1.4: Improved view, don't blown up when attribute routing is enabled, hook for an action to log 404s yourself
 v1.3: Play nice with Glimpse (no exception if 404 with Glimpse installed)
-v1.4: Improved view
     </releaseNotes>
   </metadata>
   <files>

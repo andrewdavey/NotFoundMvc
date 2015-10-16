@@ -27,7 +27,11 @@ Starting with v1.4, you can plug in an action to be executed on a 404.
         // This is the original requested URI http://localhost:43825/bin
         System.Diagnostics.Trace.WriteLine(uri);
     
+        // log string w/ NLog
         Log.Warn(CultureInfo.InvariantCulture, "404 {0}", uri);
+
+        // log as error w/ ELMAH
+        Elmah.ErrorSignal.FromCurrentContext().Raise(new HttpException(404, uri.ToString()));
     };
 
 NotFoundMvc automatically installs itself during web application start-up. It handles all the different ways a 404 HttpException is usually thrown by ASP.NET MVC. This includes a missing controller, action and route.

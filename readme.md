@@ -11,7 +11,24 @@ A view called NotFound is rendered instead of the default ASP.NET error page.
 
 Use NuGet to install NotFound MVC: https://www.nuget.org/packages/NotFoundMvc
 
-Take a look at the sample application for basic usage. Essentially you just have to reference the NotFoundMvc assembly and add a NotFound view to your app.
+Take a look at the sample application for basic usage. 
+Essentially you just have to add the NotFoundMvc package and optionally alter the NotFound.cshtml view to your app.
+
+Starting with v1.4, you can plug in an action to be executed on a 404.
+
+    NotFoundConfig.OnNotFound = (req, uri) =>
+    {
+        // The current URI, which can be the same as 
+        // the original requested URI http://localhost:43825/bin
+        // or triggered from the IIS via the system.webServer/httpErrors
+        // and look like this http://localhost:43825/notfound?404;http://localhost:43825/bin
+        System.Diagnostics.Trace.WriteLine(req.Url.ToString());
+    
+        // This is the original requested URI http://localhost:43825/bin
+        System.Diagnostics.Trace.WriteLine(uri);
+    
+        Log.Warn(CultureInfo.InvariantCulture, "404 {0}", uri);
+    };
 
 NotFoundMvc automatically installs itself during web application start-up. It handles all the different ways a 404 HttpException is usually thrown by ASP.NET MVC. This includes a missing controller, action and route.
 

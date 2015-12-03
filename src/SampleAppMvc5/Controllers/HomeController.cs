@@ -20,7 +20,13 @@ namespace SampleAppMvc5.Controllers
             // NotFoundViewResults inherits from HttpNotFoundResult
             return new NotFoundViewResult();
         }
-        
+
+        [Route("thisistheroute")]
+        public ActionResult ThisIsNotTheRoute()
+        {
+            return this.View();
+        }
+
         public ActionResult Fail()
         {
             Response.Write("Attempt to write some content."); // Expecting the NotFoundViewResult to clear the response before sending its output.

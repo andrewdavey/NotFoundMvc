@@ -12,7 +12,7 @@ A view called NotFound is rendered instead of the default ASP.NET error page.
 Use NuGet to install NotFound MVC: https://www.nuget.org/packages/NotFoundMvc
 
 Take a look at the sample application for basic usage. 
-Essentially you just have to add the NotFoundMvc package and optionally alter the NotFound.cshtml view to your app.
+Essentially you just have to add the NotFoundMvc package and optionally alter the NotFound.cshtml view to your app. You also need to change `BlockViewHandler` in `Views\web.config` to use `NotFoundMvc.NotFoundHandler`.
 
 Starting with v1.4, you can plug in an action to be executed on a 404.
 

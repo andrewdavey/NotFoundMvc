@@ -12,6 +12,7 @@ _ReSharper.*
 *.user
 Thumbs.db
 msbuild.log
+applicationhost.config
 
 Build/*
 /src/packages

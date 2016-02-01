@@ -3,8 +3,7 @@
 
   <system.web>
     <!-- Allow zombie DOS names to be captured by ASP.NET (/con, /com1, /lpt1, /aux, /prt, /nul, etc) -->
-    <httpRuntime xdt:Transform="SetAttributes" relaxedUrlToFileSystemMapping="true"/>
-    <httpRuntime xdt:Transform="InsertIfMissing" relaxedUrlToFileSystemMapping="true"/>
+    <httpRuntime relaxedUrlToFileSystemMapping="true"/>
   </system.web>
 
   <system.webServer>

@@ -17,3 +17,4 @@ Build/*
 src/.vs
 src/packages
 src/SampleAppMvc5/logfiles/*
+src/.vs/config/applicationhost.config

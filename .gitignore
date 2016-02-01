@@ -12,8 +12,8 @@ _ReSharper.*
 *.user
 Thumbs.db
 msbuild.log
-applicationhost.config
 
 Build/*
+/src/.vs
 /src/packages
 /src/SampleAppMvc5/logfiles/*

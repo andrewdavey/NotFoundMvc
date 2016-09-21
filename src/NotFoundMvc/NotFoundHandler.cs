@@ -2,14 +2,14 @@
 {
     using System;
     using System.Web;
-    using System.Web.Mvc;
     using System.Web.Routing;
+    using NotFoundMvc;
 
     public class NotFoundHandler : IHttpHandler
     {
-        private static Func<RequestContext, IController> createNotFoundController = context => new NotFoundController();
+        private static Func<RequestContext, INotFoundController> createNotFoundController = context => new NotFoundController();
 
-        public static Func<RequestContext, IController> CreateNotFoundController
+        public static Func<RequestContext, INotFoundController> CreateNotFoundController
         {
             get
             {

@@ -49,7 +49,7 @@
             var controllerWithInvoker = controller as Controller;
             if (controllerWithInvoker != null)
             {
-                controllerWithInvoker.ActionInvoker = new ActionInvokerWrapper(controllerWithInvoker.ActionInvoker);
+                controllerWithInvoker.ActionInvoker = ActionInvokerSelector.Current(controllerWithInvoker.ActionInvoker);
             }
         }
     }

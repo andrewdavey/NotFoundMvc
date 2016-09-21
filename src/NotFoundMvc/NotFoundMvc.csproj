@@ -74,11 +74,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ActionInvokerSelector.cs" />
     <Compile Include="ActionInvokerWrapper.cs" />
     <Compile Include="NotFoundConfig.cs" />
     <Compile Include="ControllerFactoryWrapper.cs" />
     <Compile Include="GlobalSuppressions.cs" />
     <Compile Include="InstallerModule.cs" />
+    <Compile Include="NotFoundAsyncControllerActionInvoker.cs" />
     <Compile Include="NotFoundController.cs" />
     <Compile Include="NotFoundHandler.cs" />
     <Compile Include="NotFoundViewResult.cs" />

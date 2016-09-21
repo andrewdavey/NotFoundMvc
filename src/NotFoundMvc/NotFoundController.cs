@@ -1,9 +1,8 @@
 ﻿namespace NotFoundMvc
 {
     using System.Web.Mvc;
-    using System.Web.Routing;
 
-    public class NotFoundController : ControllerBase
+    public class NotFoundController : ControllerBase, INotFoundController
     {
         public ActionResult NotFound()
         {
@@ -14,5 +13,10 @@
         {
             new NotFoundViewResult().ExecuteResult(this.ControllerContext);
         }
+    }
+
+    public interface INotFoundController : IController
+    {
+        ActionResult NotFound();
     }
 }

@@ -16,7 +16,7 @@
     The sample application shows how NotFoundMvc handles various 'not found' scenarios.
 </p>
 <p>
-    The following links should return our custom 404 page. (See Views\Shared\NotFound.cshtml)
+   <i>The following links should return our custom 404 page. (See Views\Shared\NotFound.cshtml)</i>
 </p>
 <p>
     Non-existent controller action:
@@ -70,11 +70,11 @@
     Action that throws HttpException with 404 status code:
     <a href="@Url.Action("fail", "home")">/home/fail</a>
 </p>
+<p></p>
 <p>
-    Action with an attribute route on it:
+    Valid action with an attribute route on it:
     <a href="@Url.Action("ThisIsNotTheRoute", "Home")">@Url.Action("ThisIsNotTheRoute", "Home")</a>
 </p>
-
 <p>
     Activate Glimpse at <a href="@Url.Content("~/glimpse.axd")" target="_blank">/glimpse.axd</a>
 </p>

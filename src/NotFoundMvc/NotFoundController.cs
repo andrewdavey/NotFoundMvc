@@ -1,7 +1,8 @@
-﻿namespace NotFoundMvc
+namespace NotFoundMvc
 {
     using System.Web.Mvc;
 
+    [AllowAnonymous]
     public class NotFoundController : ControllerBase, INotFoundController
     {
         public ActionResult NotFound()

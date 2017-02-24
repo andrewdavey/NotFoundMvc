@@ -79,6 +79,7 @@
   <ItemGroup>
     <Compile Include="ActionInvokerSelector.cs" />
     <Compile Include="ActionInvokerWrapper.cs" />
+    <Compile Include="INotFoundController.cs" />
     <Compile Include="NotFoundActionDescriptor.cs" />
     <Compile Include="NotFoundConfig.cs" />
     <Compile Include="ControllerFactoryWrapper.cs" />

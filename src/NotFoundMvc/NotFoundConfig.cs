@@ -2,6 +2,7 @@
 {
     using System;
     using System.Web;
+    using System.Web.Routing;
 
     public static class NotFoundConfig
     {
@@ -26,6 +27,22 @@
             set
             {
                 onNotFound = value;
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets NotFoundHandler.CreateNotFoundController
+        /// </summary>
+        public static Func<RequestContext, INotFoundController> CreateNotFoundController
+        {
+            get
+            {
+                return NotFoundHandler.CreateNotFoundController;
+            }
+
+            set
+            {
+                NotFoundHandler.CreateNotFoundController = value;
             }
         }
     }
